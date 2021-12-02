@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Comforter&family=Oxygen:wght@400&family=Raleway:wght@600&display=swap');
+
+/* PAGE GENEREALE ET HEADER */
+
+header {
+    display: flex;
+    background: rgb(15, 9, 95);
+}
+
+body {
+    margin : 0;
+    padding : 0;
+    cursor: url('http://www.patmax.info/curseurs/baguette.cur'),auto;
+}
+
+main {
+    background-image: url(Assets/background-accueil.png);
+    padding-top : 100px;
+    padding-bottom: -10px;
+}
+
+footer {
+    background-image: url(Assets/texture-footer.jpg);
+} 
+
+.titre_header {
+    font-family: 'Bad Script';
+    font-size: 32px;
+    text-align: center;
+    margin-left: 320px;
+    background: url("Assets/texture-titre.jpg");
+    -webkit-background-clip: text;
+    background-size: 100%;
+    background-position: 50% 50%;
+    color: rgba(255, 255, 255, 0.08);
+    animation: zoomout 15s ease 500ms forwards;
+    text-shadow: 
+    0 0 10px rgb(224, 212, 118);
+}
+
+@keyframes zoomout {
+    from {
+      background-size: 100%;
+    }
+    to {
+      background-size: 10%;
+    }
+}
+
+#logo {
+    transition: transform .2s;
+    padding-top: 5px;
+}
+
+#logo:hover {
+    transform: scale(1.03);
+    cursor: url('http://www.patmax.info/curseurs/baguette.cur'),auto;
+}
+
+#titre_inscription {
+
+    margin-top: -7px;
+    font-family: 'Oxygen';
+    color: white;
+    font-size: 35px;
+
+}
+
+input {
+    margin-bottom: 80px;
+    margin-top: 20px;
+    justify-content: center;
+    font-family: 'Oxygen';
+    font-size: 22px;
+    color: rgb(92, 92, 92);
+}
+
+label {
+    font-family: 'Oxygen';
+    color: rgb(255, 170, 34);
+    font-size: 25px;
+}
+
+#section_inscription {
+    text-align: center;
+}
+
+#bouton {
+    padding-bottom: 120px;
+}
+
+#bouton_inscription {
+    background-color:white;
+    border: 6px double rgb(32, 32, 32);
+    font-family: 'Raleway';
+    font-size: 30px;
+    color: rgb(87, 80, 80);
+    border-radius: 50px;
+    box-shadow: 0 0 6px black;
+    transition: transform .2s;
+    padding: 5px 15px 10px 15px;
+}
+
+#bouton_inscription:hover {
+    
+    box-shadow : 0 0 6px rgb(255, 136, 0);
+    transform: scale(1.10);
+    color: rgb(255, 170, 34);
+    background-color: rgb(0, 0, 0);
+    cursor: url('http://www.patmax.info/curseurs/baguette.cur'),auto;
+}
+
+.messages {
+    font-family: 'Oxygen';
+    font-size: 40px;
+    color: white;
+}
+
+/* FOOTER */
+
+#embleme_poudlard {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 200px;
+}
+
+#titre_footer {
+    font-family: 'Comforter';
+    font-size: 25px;
+    color: rgb(92, 92, 92);
+    margin-top : -265px;
+    margin-left : 45%;
+}
+
+#logo_github {
+    margin-left: 52%;
+    margin-top: -1%;
+}
+
+#logo_linkedin {
+   margin-left: 69.2%;
+   margin-top: -8.8%;
+}
