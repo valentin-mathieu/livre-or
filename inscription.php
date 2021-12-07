@@ -7,31 +7,29 @@ $connectSQL['password'] = "";
 $connectSQL['db'] = "livreor";
 $mysqli = mysqli_connect($connectSQL['host'], $connectSQL['user'], $connectSQL['password'], $connectSQL['db']);
 
-$requetemaison = rand(0,3);
-
 if(!$mysqli) {
     echo "Connexion SQL non établie.";
     exit;
 }
    
-//par défaut, on affiche le formulaire (quand il validera le formulaire sans erreur avec l'inscription validée, on l'affichera plus)
-$AfficherFormulaire=1;
+$boutons_user = 0;
+$AfficherFormulaire = 1;
 
-if(isset($_POST['login'],$_POST['password'],$_POST['password_confirm'])){//l'utilisateur à cliqué sur "S'inscrire", on demande donc si les champs sont défini avec "isset"
+if(isset($_POST['login'],$_POST['password'],$_POST['password_confirm'])){
     
-    if(empty($_POST['login'])){//le champ pseudo est vide, on arrête l'exécution du script et on affiche un message d'erreur
+    if(empty($_POST['login'])){
         $erreur = "Le champ Pseudo est vide.";
     } 
     
-    elseif(strlen($_POST['login'])>255){//le pseudo est trop long, il dépasse 25 caractères
+    elseif(strlen($_POST['login'])>255){
         $erreur = "Le pseudo est trop long, il dépasse 255 caractères.";
     } 
     
-    elseif(empty($_POST['password'])){//le champ mot de passe est vide
+    elseif(empty($_POST['password'])){
         $erreur = "Le champ Mot de passe est vide.";
     } 
     
-    elseif(empty($_POST['password_confirm'])){//le champ mot de passe est vide
+    elseif(empty($_POST['password_confirm'])){
         $erreur = "Le champ Confirmer le mot de passe est vide.";
     } 
     
@@ -44,37 +42,12 @@ if(isset($_POST['login'],$_POST['password'],$_POST['password_confirm'])){//l'uti
     } 
     
     else {
-
-        if ($requetemaison==0){
-
-            $maison = "Gryffondor";
-
-        }
-
-        elseif ($requetemaison == 1){
-
-            $maison = "Poufsouffle";
-
-        }
-
-        elseif ($requetemaison == 2){
-
-            $maison = "Serpentard";
-
-        }
-
-        elseif ($requetemaison == 3){
-
-            $maison = "Serdaigle";
-
-        }
-        //toutes les vérifications sont faites, on passe à l'enregistrement dans la base de données:
-        //Bien évidement il s'agit là d'un script simplifié au maximum, libre à vous de rajouter des conditions avant l'enregistrement comme la longueur minimum du mot de passe par exemple
-            mysqli_query($mysqli,"INSERT INTO utilisateurs SET login='".$_POST['login']."', password='".$_POST['password']."', maison='".$maison."'");
-            $inscrit = "Vous êtes inscrit avec succès, ".$_POST['login']." ! Le Choixpeau magique a fait son choix... Vous êtes... ".$maison." !";
-            //on affiche plus le formulaire
-            $AfficherFormulaire=0;
-            $BoutonConnexion= 1;
+    
+        mysqli_query($mysqli,"INSERT INTO utilisateurs SET login='".$_POST['login']."', password='".$_POST['password']."'");
+        $inscrit = "Vous êtes inscrit avec succès, ".$_POST['login']." !";
+        $_SESSION['login'] = $_POST['login'];
+        $AfficherFormulaire=0;
+        $boutons_user = 1;
         
     }
 } ?>
@@ -84,7 +57,7 @@ if(isset($_POST['login'],$_POST['password'],$_POST['password_confirm'])){//l'uti
 <head>
   <meta charset="utf-8">
   <title>Inscription</title>
-  <link rel="stylesheet" href="style/inscription.css">
+  <link rel="stylesheet" href="style/pages.css">
 </head>
 <body>
 <header> 
@@ -93,12 +66,13 @@ if(isset($_POST['login'],$_POST['password'],$_POST['password_confirm'])){//l'uti
         <h1> Projet Livre d'Or </h1>
         <h4> Valentin MATHIEU </h4> 
     </div>
+    <a href="index.php"><img id="logo_accueil" width="100px" height="100px" src="style/Assets/logo_accueil.png" alt="accueil"></a>
 </header> 
 
 <main>  
 
-    <section id="section_inscription">
-    <h1 id="titre_inscription"> Formulaire d'inscription </h1>
+    <section id="section_main">
+    <h1 id="titre_main"> Formulaire d'inscription </h1>
 
     <section class="messages">
         <?php if (isset($erreur)) {echo $erreur;} ?>
@@ -107,6 +81,13 @@ if(isset($_POST['login'],$_POST['password'],$_POST['password_confirm'])){//l'uti
     <section class="messages">
         <?php if (isset($inscrit)) {echo $inscrit;} ?>
     </section>
+
+<?php 
+if($boutons_user==1){ ?>
+    <a href="profil.php"><button id="bouton_form">Modifier votre profil</button></a>
+    <a href="livre-or.php"><button id="bouton_form">Voir le livre d'or</button></a>
+    <a href="commentaire.php"><button id="bouton_form">Ajouter un commentaire</button></a>
+<?php } ?>
 
 <?php if($AfficherFormulaire==1){
     ?>
@@ -123,7 +104,7 @@ if(isset($_POST['login'],$_POST['password'],$_POST['password_confirm'])){//l'uti
         <input type="password" name="password_confirm">
         <br>
         <div id="bouton">
-        <button id="bouton_inscription" type="submit">S'inscrire !</button>
+        <button id="bouton_form" type="submit">S'inscrire !</button>
         </div>
     </form>
 </section>
@@ -131,11 +112,16 @@ if(isset($_POST['login'],$_POST['password'],$_POST['password_confirm'])){//l'uti
 }
 ?>
 
-<footer>    
-<img id="embleme_poudlard" src="style/Assets/embleme_poudlard.png" alt="poudlard" height="200px" width="242px">
-    <div id="titre_footer"><h1> Voici mon lien GitHub et mon Linkedin ! </h1></div>
+<footer>
+    <div id="embleme_poudlard">
+    <img src="style/Assets/embleme_poudlard.png" alt="poudlard" height="200px" width="242px">
+    </div>
+    
+    <div id="titre_footer"> Voici mon lien GitHub et mon Linkedin ! </div>
+    <section class="logos_footer">
     <div id="logo_github"><a href="https://github.com/valentin-mathieu"><img src="style/Assets/logo-github.png" alt="github" height=120px width=120px></a></div>
     <div id="logo_linkedin"><a href="https://www.linkedin.com/in/valentin-mathieu-6857ab21b"><img src="style/Assets/logo-linkedin.png" alt="linkedin" height=140px width=140px></a></div>
+    </section>
 </footer>
 </body>
 </html>

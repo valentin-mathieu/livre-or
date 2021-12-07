@@ -15,13 +15,15 @@ body {
 
 main {
     background-image: url(Assets/background-accueil.png);
-    padding-top : 100px;
-    padding-bottom: -10px;
+    justify-content: center;
+    align-items: center;
 }
 
 footer {
     background-image: url(Assets/texture-footer.jpg);
-} 
+    display: flex;
+    flex-direction: row;
+}
 
 .titre_header {
     font-family: 'Bad Script';
@@ -57,51 +59,66 @@ footer {
     cursor: url('http://www.patmax.info/curseurs/baguette.cur'),auto;
 }
 
-#titre_inscription {
+#logo_accueil {
+    position: absolute;
+    right: 30px;
+    top: 210px;
+}
 
-    margin-top: -7px;
+/* PAGE INDEX */
+
+#p_or {
+    color: rgb(238, 219, 109);
+}
+
+/* PAGES GENERALES */
+
+#section_main {
+    text-align: center;
+}
+
+#titre_main {
+    margin-top: 0px;
+    padding-top: 85px;
     font-family: 'Oxygen';
     color: white;
     font-size: 35px;
+    margin-bottom: 50px;
 
 }
 
 input {
-    margin-bottom: 80px;
+    margin-bottom: 20px;
     margin-top: 20px;
     justify-content: center;
+    align-items: center;
     font-family: 'Oxygen';
     font-size: 22px;
     color: rgb(92, 92, 92);
+    max-width: none;
 }
 
 label {
     font-family: 'Oxygen';
-    color: rgb(255, 170, 34);
+    color: rgb(248, 153, 0);
     font-size: 25px;
 }
 
-#section_inscription {
-    text-align: center;
-}
-
-#bouton {
-    padding-bottom: 120px;
-}
-
-#bouton_inscription {
+#bouton_form {
     background-color:white;
     border: 6px double rgb(32, 32, 32);
     font-family: 'Raleway';
-    font-size: 30px;
+    font-size: 25px;
     color: rgb(87, 80, 80);
     border-radius: 50px;
     box-shadow: 0 0 6px black;
     transition: transform .2s;
     padding: 5px 15px 10px 15px;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
-#bouton_inscription:hover {
+#bouton_form:hover {
     
     box-shadow : 0 0 6px rgb(255, 136, 0);
     transform: scale(1.10);
@@ -113,31 +130,79 @@ label {
 .messages {
     font-family: 'Oxygen';
     font-size: 40px;
+    color: rgb(248, 168, 64);
+}
+
+/* PAGE PROFIL */
+
+#bouton_form_profil {
+    background-color:white;
+    border: 6px double rgb(32, 32, 32);
+    font-family: 'Raleway';
+    font-size: 25px;
+    color: rgb(87, 80, 80);
+    border-radius: 50px;
+    box-shadow: 0 0 6px black;
+    transition: transform .2s;
+    padding: 5px 15px 10px 15px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+   
+}
+
+#bouton_form_profil:hover {
+    
+    box-shadow : 0 0 6px rgb(255, 136, 0);
+    transform: scale(1.10);
+    color: rgb(255, 170, 34);
+    background-color: rgb(0, 0, 0);
+    cursor: url('http://www.patmax.info/curseurs/baguette.cur'),auto;
+}
+
+/* PAGE COMMENTAIRES */ 
+
+table {
+    margin: auto;
+}
+
+td {
+    padding-bottom:20px; 
+    text-align: center;
+}
+
+.commentaires {
+    font-family: 'Oxygen';
+    font-size: 22px;
     color: white;
+    justify-content: center;
 }
 
 /* FOOTER */
 
-#embleme_poudlard {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 200px;
-}
-
 #titre_footer {
     font-family: 'Comforter';
-    font-size: 25px;
+    font-size: 3rem;
+    font-style: bold;
     color: rgb(92, 92, 92);
-    margin-top : -265px;
-    margin-left : 45%;
+    padding-left: 30%;
+}
+#embleme_poudlard {
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.logos_footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;    
 }
 
 #logo_github {
-    margin-left: 52%;
-    margin-top: -1%;
+    margin-top: 100px;
+    margin-left: -550px;
 }
 
 #logo_linkedin {
-   margin-left: 69.2%;
-   margin-top: -8.8%;
+    margin-top: 90px;
+    margin-left: 70px;
 }
