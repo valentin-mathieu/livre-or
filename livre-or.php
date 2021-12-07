@@ -7,6 +7,7 @@ $connectSQL['db'] = "livreor";
 
 session_start();
 $addcommentaire = 0;
+
 if (isset($_SESSION['login'])){
 
     $addcommentaire = 1;
